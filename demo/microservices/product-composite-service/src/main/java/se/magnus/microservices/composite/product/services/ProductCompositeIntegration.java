@@ -61,7 +61,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
     }
 
     public Product getProduct(int productId) {
-
         try {
             String url = productServiceUrl + productId;
             LOG.debug("Will call getProduct API on URL: {}", url);
@@ -70,17 +69,12 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
             LOG.debug("Found a product with id: {}", product.getProductId());
 
             return product;
-
         } catch (HttpClientErrorException ex) {
-
             switch (ex.getStatusCode()) {
-
             case NOT_FOUND:
                 throw new NotFoundException(getErrorMessage(ex));
-
             case UNPROCESSABLE_ENTITY :
                 throw new InvalidInputException(getErrorMessage(ex));
-
             default:
                 LOG.warn("Got a unexpected HTTP error: {}, will rethrow it", ex.getStatusCode());
                 LOG.warn("Error body: {}", ex.getResponseBodyAsString());
@@ -98,7 +92,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
     }
 
     public List<Recommendation> getRecommendations(int productId) {
-
         try {
             String url = recommendationServiceUrl + productId;
 

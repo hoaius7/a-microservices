@@ -1,7 +1,9 @@
 package se.magnus.util.exceptions;
 
 public class NotFoundException extends RuntimeException {
-    public NotFoundException() {
+	private static final long serialVersionUID = 5588556785365899332L;
+
+	public NotFoundException() {
     }
 
     public NotFoundException(String message) {

@@ -51,7 +51,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
         @Value("${app.review-service.host}") String reviewServiceHost,
         @Value("${app.review-service.port}") int    reviewServicePort
     ) {
-
         this.restTemplate = restTemplate;
         this.mapper = mapper;
 
@@ -62,7 +61,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
     @Override
     public Product createProduct(Product body) {
-
         try {
             String url = productServiceUrl;
             LOG.debug("Will post a new product to URL: {}", url);
@@ -79,7 +77,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
     @Override
     public Product getProduct(int productId) {
-
         try {
             String url = productServiceUrl + "/" + productId;
             LOG.debug("Will call the getProduct API on URL: {}", url);
@@ -126,7 +123,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
     @Override
     public List<Recommendation> getRecommendations(int productId) {
-
         try {
             String url = recommendationServiceUrl + "?productId=" + productId;
 
@@ -174,7 +170,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
     @Override
     public List<Review> getReviews(int productId) {
-
         try {
             String url = reviewServiceUrl + "?productId=" + productId;
 
@@ -183,7 +178,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
             LOG.debug("Found {} reviews for a product with id: {}", reviews.size(), productId);
             return reviews;
-
         } catch (Exception ex) {
             LOG.warn("Got an exception while requesting reviews, return zero reviews: {}", ex.getMessage());
             return new ArrayList<>();
@@ -197,21 +191,17 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
             LOG.debug("Will call the deleteReviews API on URL: {}", url);
 
             restTemplate.delete(url);
-
         } catch (HttpClientErrorException ex) {
             throw handleHttpClientException(ex);
         }
     }
 
-    private RuntimeException handleHttpClientException(HttpClientErrorException ex) {
+	private RuntimeException handleHttpClientException(HttpClientErrorException ex) {
         switch (ex.getStatusCode()) {
-
         case NOT_FOUND:
             return new NotFoundException(getErrorMessage(ex));
-
         case UNPROCESSABLE_ENTITY :
             return new InvalidInputException(getErrorMessage(ex));
-
         default:
             LOG.warn("Got a unexpected HTTP error: {}, will rethrow it", ex.getStatusCode());
             LOG.warn("Error body: {}", ex.getResponseBodyAsString());

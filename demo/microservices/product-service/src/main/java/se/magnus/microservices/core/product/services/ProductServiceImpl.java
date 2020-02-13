@@ -48,7 +48,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProduct(int productId) {
-
         if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
 
         ProductEntity entity = repository.findByProductId(productId)

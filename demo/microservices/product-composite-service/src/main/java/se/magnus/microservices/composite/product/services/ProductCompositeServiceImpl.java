@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 @RestController
 public class ProductCompositeServiceImpl implements ProductCompositeService {
-
     private static final Logger LOG = LoggerFactory.getLogger(ProductCompositeServiceImpl.class);
 
     private final ServiceUtil serviceUtil;
@@ -68,7 +67,6 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
         if (product == null) throw new NotFoundException("No product found for productId: " + productId);
 
         List<Recommendation> recommendations = integration.getRecommendations(productId);
-
         List<Review> reviews = integration.getReviews(productId);
 
         LOG.debug("getCompositeProduct: aggregate entity found for productId: {}", productId);

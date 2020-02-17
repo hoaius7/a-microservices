@@ -29,9 +29,7 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
 
     @Override
     public void createCompositeProduct(ProductAggregate body) {
-
         try {
-
             LOG.debug("createCompositeProduct: creates a new composite entity for productId: {}", body.getProductId());
 
             Product product = new Product(body.getProductId(), body.getName(), body.getWeight(), null);
@@ -52,7 +50,6 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
             }
 
             LOG.debug("createCompositeProduct: composite entites created for productId: {}", body.getProductId());
-
         } catch (RuntimeException re) {
             LOG.warn("createCompositeProduct failed", re);
             throw re;
@@ -76,13 +73,10 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
 
     @Override
     public void deleteCompositeProduct(int productId) {
-
         LOG.debug("deleteCompositeProduct: Deletes a product aggregate for productId: {}", productId);
 
         integration.deleteProduct(productId);
-
         integration.deleteRecommendations(productId);
-
         integration.deleteReviews(productId);
 
         LOG.debug("getCompositeProduct: aggregate entities deleted for productId: {}", productId);

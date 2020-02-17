@@ -40,7 +40,6 @@ public class ProductServiceImpl implements ProductService {
 
             LOG.debug("createProduct: entity created for productId: {}", body.getProductId());
             return mapper.entityToApi(newEntity);
-
         } catch (DuplicateKeyException dke) {
             throw new InvalidInputException("Duplicate key, Product Id: " + body.getProductId());
         }

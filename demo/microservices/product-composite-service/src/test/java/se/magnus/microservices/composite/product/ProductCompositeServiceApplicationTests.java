@@ -64,7 +64,6 @@ public class ProductCompositeServiceApplicationTests {
 
 	@Test
 	public void createCompositeProduct1() {
-
 		ProductAggregate compositeProduct = new ProductAggregate(1, "name", 1, null, null, null);
 
 		postAndVerifyProduct(compositeProduct, OK);
@@ -93,7 +92,6 @@ public class ProductCompositeServiceApplicationTests {
 
 	@Test
 	public void getProductById() {
-
 		getAndVerifyProduct(PRODUCT_ID_OK, OK)
             .jsonPath("$.productId").isEqualTo(PRODUCT_ID_OK)
             .jsonPath("$.recommendations.length()").isEqualTo(1)
@@ -102,7 +100,6 @@ public class ProductCompositeServiceApplicationTests {
 
 	@Test
 	public void getProductNotFound() {
-
 		getAndVerifyProduct(PRODUCT_ID_NOT_FOUND, NOT_FOUND)
             .jsonPath("$.path").isEqualTo("/product-composite/" + PRODUCT_ID_NOT_FOUND)
             .jsonPath("$.message").isEqualTo("NOT FOUND: " + PRODUCT_ID_NOT_FOUND);
@@ -110,7 +107,6 @@ public class ProductCompositeServiceApplicationTests {
 
 	@Test
 	public void getProductInvalidInput() {
-
 		getAndVerifyProduct(PRODUCT_ID_INVALID, UNPROCESSABLE_ENTITY)
             .jsonPath("$.path").isEqualTo("/product-composite/" + PRODUCT_ID_INVALID)
             .jsonPath("$.message").isEqualTo("INVALID: " + PRODUCT_ID_INVALID);

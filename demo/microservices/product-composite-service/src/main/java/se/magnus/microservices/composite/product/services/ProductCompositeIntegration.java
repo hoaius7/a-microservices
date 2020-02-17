@@ -69,7 +69,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
             LOG.debug("Created a product with id: {}", product.getProductId());
 
             return product;
-
         } catch (HttpClientErrorException ex) {
             throw handleHttpClientException(ex);
         }

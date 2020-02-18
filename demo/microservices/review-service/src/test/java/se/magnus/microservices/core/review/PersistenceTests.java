@@ -41,7 +41,6 @@ public class PersistenceTests {
 
     @Test
    	public void create() {
-
         ReviewEntity newEntity = new ReviewEntity(1, 3, "a", "s", "c");
         repository.save(newEntity);
 
@@ -83,7 +82,6 @@ public class PersistenceTests {
 
     @Test
    	public void optimisticLockError() {
-
         // Store the saved entity in two separate entity objects
         ReviewEntity entity1 = repository.findById(savedEntity.getId()).get();
         ReviewEntity entity2 = repository.findById(savedEntity.getId()).get();

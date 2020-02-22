@@ -19,7 +19,6 @@ import static reactor.core.publisher.Mono.error;
 
 @RestController
 public class ProductServiceImpl implements ProductService {
-
     private static final Logger LOG = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     private final ServiceUtil serviceUtil;

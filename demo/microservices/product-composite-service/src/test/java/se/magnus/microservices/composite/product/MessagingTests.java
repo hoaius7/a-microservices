@@ -65,7 +65,6 @@ public class MessagingTests {
 
 	@Test
 	public void createCompositeProduct1() {
-
 		ProductAggregate composite = new ProductAggregate(1, "name", 1, null, null, null);
 		postAndVerifyProduct(composite, OK);
 
